@@ -55,6 +55,8 @@ router.put(
 router.delete("/:id", midware.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
+    const deletedAccount = await Accounts.deleteById(req.params.id);
+    res.json(deletedAccount);
   } catch (err) {
     next(err);
   }
