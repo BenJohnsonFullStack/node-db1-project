@@ -5,7 +5,7 @@ exports.checkAccountPayload = (req, res, next) => {
   // Note: you can either write "manual" validation logic
   // or use the Yup library (not currently installed)
   const { name, budget } = req.body;
-  if (!name || !budget) {
+  if (name === undefined || budget === undefined) {
     next({ status: 400, message: "name and budget are required" });
   } else if (name.trim().length < 3 || name.trim().length > 100) {
     next({
