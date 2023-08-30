@@ -27,7 +27,11 @@ router.post(
   midware.checkAccountNameUnique,
   async (req, res, next) => {
     // DO YOUR MAGIC
+    let { name, budget } = req.body;
+    name = name.trim();
     try {
+      const newAccount = await Accounts.create({ name, budget });
+      res.status(201).json(newAccount);
     } catch (err) {
       next(err);
     }
