@@ -15,9 +15,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", midware.checkAccountId, async (req, res, next) => {
   // DO YOUR MAGIC
   try {
-    const { id } = req.params;
-    const account = await Accounts.getById(id);
-    res.json(account);
+    res.json(req.account);
   } catch (err) {
     next(err);
   }
