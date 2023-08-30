@@ -42,10 +42,16 @@ router.put(
   "/:id",
   midware.checkAccountId,
   midware.checkAccountPayload,
-  midware.checkAccountNameUnique,
   async (req, res, next) => {
     // DO YOUR MAGIC
     try {
+      let { name, budget } = req.body;
+      name = name.trim();
+      const updatedAccount = await Accounts.updateById(req.params.id, {
+        name,
+        budget,
+      });
+      res.json(updatedAccount);
     } catch (err) {
       next(err);
     }
