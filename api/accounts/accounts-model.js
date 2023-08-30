@@ -4,6 +4,10 @@ const getAll = () => {
   return db("accounts");
 };
 
+const getByName = (name) => {
+  return db("accounts").where("name", name).first();
+};
+
 const getById = (id) => {
   return db("accounts").where("id", id).first();
 };
@@ -18,6 +22,7 @@ const deleteById = (id) => {};
 
 module.exports = {
   getAll,
+  getByName,
   getById,
   create,
   updateById,
